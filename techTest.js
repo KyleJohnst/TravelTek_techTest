@@ -87,6 +87,7 @@ const closestToCoordinates = (array, targetLocation) => {
         const currDistance = locationDistance(targetLocation, curr);
 
         return (prevDistance < currDistance) ? prev : curr;
+        
     });
 };
 
