@@ -15,7 +15,7 @@ function countEyes(array, eyeColour){
     for (let i = 0; i < array.length; i++) {
         const person = array[i];
         if (person.eyeColor === eyeColour) {
-        eyeCount += 1 
+        eyeCount += 1
         }
     }
   return eyeCount;
@@ -30,17 +30,20 @@ function topTenSurnames(array) {
    // // Loops through the array and creates an object containing key value pairs, the surname being the key and tallies all the occurances of each surname
      const reducedObj = array.reduce((person, entry) => {
          person[entry.name.last] = (person[entry.name.last] || 0) + 1;
-         return person; 
+         return person;
      }, {});
-     
+
 // // returns an array from the reducedObj that then gets mapped over to add the key values to the objects
      const result = Object.keys(reducedObj)
          .map((key) => {
              const temp = {};
              temp.surname = key;
-             temp.count = reducedObj[key];             
+             temp.count = reducedObj[key];
              return temp;
          })
+         .sort((a, b) => {
+          return b.count - a.count;
+});
 
      return result.splice(1, 10);
 }
@@ -54,7 +57,7 @@ function averageAgeByEyeColour(array, eyeColour) {
     for (let i = 0; i < array.length; i++) {
         const person = array[i];
         if (person.eyeColor === eyeColour) {
-            agesArray.push(person.age)    
+            agesArray.push(person.age)
         }
     }
 let sum = agesArray.reduce((previous, current) => current += previous);
@@ -87,7 +90,7 @@ const closestToCoordinates = (array, targetLocation) => {
         const currDistance = locationDistance(targetLocation, curr);
 
         return (prevDistance < currDistance) ? prev : curr;
-        
+
     });
 };
 
@@ -123,4 +126,3 @@ console.log("Account closest to a location: ", closestToCoordinates(people, {
 // }
 
 // console.log(findAcountsByDaysExisted(people, 366))
-
